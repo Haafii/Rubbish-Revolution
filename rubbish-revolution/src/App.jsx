@@ -1,8 +1,13 @@
+import React from 'react'
+import Login from './components/Login'
+import Footer from './components/Footer'
+
 function App() {
   return (
-    <h1 className="bg-yellow-300">
-      Hello world!
-    </h1>
+    <div>
+      <Login/>
+      <Footer/>
+    </div>
   )
 }
 
