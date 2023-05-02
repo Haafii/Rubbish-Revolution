@@ -49,6 +49,16 @@ export default function Example() {
           Chat
         </a>
       </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <a href="#" className="flex items-center text-base">
+          Scanner
+        </a>
+      </Typography>
     </ul>
   );
 
