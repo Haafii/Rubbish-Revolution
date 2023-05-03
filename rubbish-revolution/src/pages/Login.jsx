@@ -44,9 +44,12 @@ function Login() {
       <div className='flex justify-start m-10'>
         LOGO
       </div>
+      <a href="Home">
       <div className='flex justify-end m-10'>
         <button className='text-white rounded-xl bg-sky-500 w-24 mt-3 h-8'>Sign Up</button>
       </div>
+      </a>
+      
     </div>
   )
 }

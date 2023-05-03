@@ -18,7 +18,7 @@ function Home() {
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <img className="object-cover object-center rounded-lg" alt="hero" src="/images/hero_img.jpg"/>
+            <img className="object-cover object-center rounded-xl" alt="hero" src="/images/hero_img.jpg"/>
           </div>
         </div>
       </section>

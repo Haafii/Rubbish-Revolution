@@ -25,7 +25,7 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center text-base">
+        <a href="Home" className="flex items-center text-base">
           Home
         </a>
       </Typography>
@@ -55,7 +55,7 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center text-base">
+        <a href="Scanner" className="flex items-center text-base">
           Scanner
         </a>
       </Typography>
@@ -67,7 +67,7 @@ export default function Example() {
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Typography
           as="a"
-          href="#"
+          href="# "
           variant="small"
           className="mr-4 cursor-pointer py-1.5 "
         >
