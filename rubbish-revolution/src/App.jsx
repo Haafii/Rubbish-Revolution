@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Header from './components/Header';
 import Scanner from './pages/Scanner';
 import Profile from './pages/Profile';
+import Leaderboard from './pages/Leaderbord';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path='/leaderbord' element={<Leaderboard />} />
         </Routes>
         <Footer />
       </Router>
