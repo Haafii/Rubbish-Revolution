@@ -4,6 +4,6 @@
 
 @layer components {
   .socialIcon {
-    @apply w-11 border-[1px] border-blue-400 border-solid h-11 rounded-full pt-2 pl-2 text-white  hover:text-blue-400 cursor-pointer transition duration-200 hover:animate-pulse;
+    @apply w-11 border-[1px]  border-solid h-11 rounded-full pt-2 pl-2 text-white   cursor-pointer transition duration-200 hover:animate-pulse;
   }
 }

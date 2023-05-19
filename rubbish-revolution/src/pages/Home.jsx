@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../components/Header'
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -13,9 +14,9 @@ function Home() {
             </h1>
             <p className="mb-8 leading-relaxed">In order to create a plastic free environment, there is a need to establish a system where people can enjoy doing the necessity of Going GREEN. We are here to bring about the change needed.</p>
             <div className="flex justify-center">
-              <a href="profile">
+              <Link to={"/profile"}>
                 <button className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600  rounded text-lg">Get started</button>
-              </a>
+              </Link>
               <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-400 rounded text-lg">Learn more</button>
             </div>
           </div>

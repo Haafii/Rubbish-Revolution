@@ -6,6 +6,7 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 export default function Example() {
   const [openNav, setOpenNav] = useState(false);
@@ -25,9 +26,9 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="Home" className="flex items-center text-base">
+        <Link to={"/home"}  className="flex items-center text-base">
           Home
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -35,9 +36,9 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center text-base">
+        <Link to={"/leaderbord"} className="flex items-center text-base">
           Rankings
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -45,9 +46,9 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center text-base">
+        <Link to={"#"} className="flex items-center text-base">
           Chat
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -55,9 +56,9 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="Scanner" className="flex items-center text-base">
+        <Link to={"/scanner"} className="flex items-center text-base">
           Scanner
-        </a>
+        </Link>
       </Typography>
     </ul>
   );
@@ -74,9 +75,11 @@ export default function Example() {
           <span className="">LOGO</span>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
-        <Button variant="gradient" size="sm" className="hidden lg:inline-block bg-sky-500 hover:drop-shadow-sm hover:bg-sky-600 rounded-2xl delay-100 hover:translate-y-0.5 hover:scale-110 duration-300">
-          <span>Sign Up</span>
-        </Button>
+        <Link to={"/"}>
+          <Button variant="gradient" size="sm" className="hidden lg:inline-block bg-sky-500 hover:drop-shadow-sm hover:bg-sky-600 rounded-2xl delay-100 hover:translate-y-0.5 hover:scale-110 duration-300">
+            <span>Log Out</span>
+          </Button>
+        </Link>
         <IconButton
           variant="text"
           className="flex ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -118,9 +121,11 @@ export default function Example() {
       <MobileNav open={openNav}>
         <div className="container mx-auto">
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2 bg-sky-500 hover:drop-shadow-sm hover:bg-sky-600 hover:translate-y-0.5 hover:scale-105 duration-300">
-            <span>Sign Up</span>
-          </Button>
+          <Link to={"/"}>
+            <Button variant="gradient" size="sm" fullWidth className="mb-2 bg-sky-500 hover:drop-shadow-sm hover:bg-sky-600 hover:translate-y-0.5 hover:scale-105 duration-300">
+              <span>Log Out</span>
+            </Button>
+          </Link>
         </div>
       </MobileNav>
     </Navbar>
