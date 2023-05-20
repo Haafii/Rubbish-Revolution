@@ -7,7 +7,7 @@ const Leaderboard = () => {
       <Header />
       <div className='bg-primary'>
         <div className='bg-secondary '>
-          leader Board
+          leader Board     here
         </div>
       </div>
     </div>
