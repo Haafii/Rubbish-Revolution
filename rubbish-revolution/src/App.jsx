@@ -29,7 +29,7 @@ function App() {
           <Route path="/admin/register" element={<Register />} />
           <Route path="/scoreincreased" element={<ScoreAnimation />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   )

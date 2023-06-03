@@ -68,7 +68,7 @@ const PointsAnimation = () => {
     startVelocity: 40,
     elementCount: 70,
     dragFriction: 0.12,
-    duration: 5000, // Change the animation duration to 5000 milliseconds (5 seconds)
+    duration: 5000, 
     stagger: 3,
     width: '10px',
     height: '10px',
@@ -82,7 +82,7 @@ const PointsAnimation = () => {
 
   return (
     <div className="bg-primary flex flex-col items-center justify-center min-h-screen">
-      <div className="flex items-center justify-center h-full">
+      <div className="h-full items-center justify-center">
         <Confetti active={animate} config={confettiConfig} />
       </div>
     </div>
