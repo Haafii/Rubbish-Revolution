@@ -13,6 +13,7 @@ import Header from './components/Header';
 import Scanner from './pages/Scanner';
 import Profile from './pages/Profile';
 import Leaderboard from './pages/Leaderbord';
+import ScoreAnimation from './pages/ScoreAnimation/ScoreAnimation';
 
 function App() {
   return (
@@ -20,12 +21,13 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register/>} />
+          <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/profile" element={<Profile />} />
           <Route path='/leaderbord' element={<Leaderboard />} />
-          <Route path="/admin/register" element={<Register/>} />
+          <Route path="/admin/register" element={<Register />} />
+          <Route path="/scoreincreased" element={<ScoreAnimation />} />
         </Routes>
         <Footer />
       </Router>

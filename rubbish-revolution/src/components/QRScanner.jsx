@@ -50,7 +50,7 @@ const QRScanner = () => {
   useEffect(() => {
     if (scanned) {
       // Redirect to the profile page
-      navigate('/profile');
+      navigate('/scoreincreased');
     }
   }, [scanned, navigate]);
 
