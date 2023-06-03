@@ -1,5 +1,6 @@
 import React from 'react'
 import Login from './pages/Login'
+import Register from './pages/Register'
 import Footer from './components/Footer'
 import {
   BrowserRouter as Router,
@@ -19,6 +20,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register/>} />
           <Route path="/home" element={<Home />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/profile" element={<Profile />} />
