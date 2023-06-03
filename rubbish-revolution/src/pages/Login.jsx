@@ -81,7 +81,7 @@ const Login = () => {
                 type='text'
                 className='rounded-2xl px-2 py-1 w-4/5 md:w-full border-[1px]  m-1 focus:shadow-md  focus:outline-none focus:ring-0'
                 placeholder='Username'
-                onChange={(e) => { setUsername(e.target.value), setError(null) }}
+                onChange={(e) => { setUsername(e.target.value), setError(null), setIsLoading(false) }}
                 required
                 id="username"
                 name="username"
@@ -92,7 +92,7 @@ const Login = () => {
                 placeholder='Password'
                 id="password"
                 name="password"
-                onChange={(e) => { setPassword(e.target.value), setError(null) }}
+                onChange={(e) => { setPassword(e.target.value), setError(null), setIsLoading(false) }}
                 required
               />
               {error && <div className='text-red-600 text-sm '>{error}</div>}

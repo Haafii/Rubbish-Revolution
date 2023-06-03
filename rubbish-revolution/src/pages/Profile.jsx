@@ -3,6 +3,7 @@ import Header from "../components/Header";
 
 function Profile() {
   const [username, setUsername] = useState("");
+  const [qrData, setQrData] = useState("");
   const [point, setPoint] = useState();
   // Retrieve the user ID from local storage
   const userId = localStorage.getItem('userId');
@@ -20,10 +21,14 @@ function Profile() {
     const fetchData = async () => {
       try {
         const response = await fetch("https://mini-project-mkgl.onrender.com/users/me/", requestOptions);
+        const qr = await fetch("https://mini-project-mkgl.onrender.com/qr_gen", requestOptions)
         const result = await response.json();
-        console.log(result);
+        const qrResult = await qr.json();
+        // console.log(qrResult);
+        // console.log(result);
         setUsername(result.name);
-        setPoint(result.points)
+        setPoint(result.points);
+        setQrData("data:image/png;base64," + qrResult.qrdata)
       } catch (error) {
         console.log('error', error);
       }
@@ -31,6 +36,8 @@ function Profile() {
 
     fetchData();
   }, []);
+
+  // console.log(qrData)
   return (
     <div>
       <Header />
@@ -92,6 +99,8 @@ function Profile() {
                       >
                         Connect
                       </button> */}
+                      <img alt="Embedded Image" src={qrData} />
+                      
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">

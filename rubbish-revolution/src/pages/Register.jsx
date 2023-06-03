@@ -13,8 +13,12 @@ function Register() {
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  // const [role, setRole] = useState("user");
+  const [newRole, setNewRole] = useState("");
+  // console.log(newRole)
   const onSubmit = async (e) => {
+    if (newRole == ""){
+      setNewRole("user");
+    }
     setIsLoading(true);
     e.preventDefault()
     if (password !== registerConfirmPassword) {
@@ -25,7 +29,7 @@ function Register() {
       Name: registerName,
       email: email,
       password: password,
-
+      role: newRole
     };
 
     var requestOptions = {
@@ -82,14 +86,14 @@ function Register() {
                 type='text'
                 className='rounded-2xl px-2 py-1 w-4/5 md:w-full border-[1px]  m-1 focus:shadow-md  focus:outline-none focus:ring-0'
                 placeholder='Username'
-                onChange={(e) => { setRegisterName(e.target.value), setError(null) }}
+                onChange={(e) => { setRegisterName(e.target.value), setError(null), setIsLoading(false) }}
                 required
               />
               <input
                 type="email"
                 label="Email address"
                 value={email}
-                onChange={(e) => { setEmail(e.target.value), setError(null) }}
+                onChange={(e) => { setEmail(e.target.value), setError(null), setIsLoading(false) }}
                 className='rounded-2xl px-2 py-1 w-4/5 md:w-full border-[1px]  m-1 focus:shadow-md  focus:outline-none focus:ring-0'
                 placeholder='Email'
                 required
@@ -97,7 +101,7 @@ function Register() {
               <input
                 label="Create password"
                 value={password}
-                onChange={(e) => { setPassword(e.target.value), setError(null) }}
+                onChange={(e) => { setPassword(e.target.value), setError(null), setIsLoading(false) }}
                 type='password'
                 className='rounded-2xl px-2 py-1 w-4/5 md:w-full border-[1px]  m-1 focus:shadow-md  focus:outline-none focus:ring-0'
                 placeholder='password'
@@ -109,15 +113,15 @@ function Register() {
                 type="text"
                 className='rounded-2xl px-2 py-1 w-4/5 md:w-full border-[1px]  m-1 focus:shadow-md  focus:outline-none focus:ring-0'
                 placeholder='Confirm Password'
-                onChange={(e) => { setRegisterConfirmPassword(e.target.value), setError(null) }}
+                onChange={(e) => { setRegisterConfirmPassword(e.target.value), setError(null), setIsLoading(false) }}
                 required
               />
 
               {role == "admin" ?
                 <select
                   className='rounded-2xl px-2 py-1 w-4/5 md:w-full border-[1px] m-1 focus:shadow-md focus:outline-none focus:ring-0'
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
+                  value={newRole}
+                  onChange={(e) => setNewRole(e.target.value)}
                 >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
