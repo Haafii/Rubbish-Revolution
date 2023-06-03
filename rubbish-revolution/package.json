@@ -15,10 +15,10 @@
     "@material-tailwind/react": "^1.4.2",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.2",
+    "@zxing/library": "^0.20.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-qr-reader": "^3.0.0-beta-1",
-    "react-qrcode-reader": "^2.0.0",
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
