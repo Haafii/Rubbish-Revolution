@@ -25,13 +25,14 @@ const Login = () => {
     // Declare the result variable
     let result = null;
 
-    fetch("https://slashkey2-0.onrender.com/login", requestOptions)
+    fetch("https://mini-project-mkgl.onrender.com/login", requestOptions)
       .then(response => response.json())
       .then(data => {
         result = data; // Assign the response data to the result variable
         // console.log(result);
         // console.log(result.access_token);
         const userId = result.access_token; // User ID received from the server
+        // const role = result
         localStorage.setItem('userId', userId);
         // console.log(userId);
 
@@ -51,13 +52,13 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-600 flex flex-col items-center justify-center min-h-screen md:py-2">
+    <div className="bg-primary flex flex-col items-center justify-center min-h-screen md:py-2">
       <main className="flex items-center w-full px-2 md:px-20">
         <div className="hidden md:inline-flex flex-col flex-1 space-y-1">
           <p className='text-6xl text-blue-500 font-bold'>Rubbish Revolution</p>
-          <p className='font-medium text-lg leading-1 text-primary'>Stop the pollution. Be part of the solution.</p>
+          <p className='font-medium text-lg leading-1 text-white'>Stop the pollution. Be part of the solution.</p>
         </div>
-        <div className="bg-primary rounded-2xl shadow-2xl flex flex-col w-full md:w-1/3 items-center max-w-4xl transition duration-1000 ease-out">
+        <div className="bg-secondary rounded-2xl shadow-2xl flex flex-col w-full md:w-1/3 items-center max-w-4xl transition duration-1000 ease-out">
           <h2 className='p-3 text-3xl font-bold text-white'>Rubbish Revolution</h2>
           <div className="inline-block border-[1px] justify-center w-20 border-white border-solid"></div>
           <h3 className='text-xl font-semibold text-white pt-2'>Welcome Back</h3>

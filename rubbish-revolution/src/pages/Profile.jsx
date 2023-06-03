@@ -1,7 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from "../components/Header";
 
 function Profile() {
+  const [username, setUsername] = useState("");
+  const [point, setPoint] = useState();
+  // Retrieve the user ID from local storage
+  const userId = localStorage.getItem('userId');
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `bearer ${userId}`);
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://mini-project-mkgl.onrender.com/users/me/", requestOptions);
+        const result = await response.json();
+        console.log(result);
+        setUsername(result.name);
+        setPoint(result.points)
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div>
       <Header />
@@ -69,13 +98,13 @@ function Profile() {
                     <div className="text-white flex justify-center py-4 lg:pt-4 pt-8">
                       <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide ">
-                        Points
+                          Points
                         </span>
                         <span className="text-sm ">Ranking  </span>
                       </div>
                       <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide ">
-                          10
+                          {point}
                         </span>
                         <span className="text-sm">Points</span>
                       </div>
@@ -90,7 +119,7 @@ function Profile() {
                 </div>
                 <div className="text-white text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal   mb-2">
-                    User Name
+                    {username}
                   </h3>
                   {/* <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
@@ -109,7 +138,7 @@ function Profile() {
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-white">
-                      If you have a larger dataset with many thousands or millions of rows, generating the graphs may take longer, but it should still be within a few seconds or minutes depending on the complexity of the graph and the processing power of your computer
+                        If you have a larger dataset with many thousands or millions of rows, generating the graphs may take longer, but it should still be within a few seconds or minutes depending on the complexity of the graph and the processing power of your computer
                       </p>
                       <a
                         href="#"

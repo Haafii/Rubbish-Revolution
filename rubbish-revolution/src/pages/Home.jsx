@@ -1,8 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import { Link } from "react-router-dom";
 
 function Home() {
+  const [username, setUsername] = useState("");
+  const [role, setRule] = useState("")
+  // Retrieve the user ID from local storage
+  const userId = localStorage.getItem('userId');
+
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `bearer ${userId}`);
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://mini-project-mkgl.onrender.com/users/me/", requestOptions);
+        const result = await response.json();
+        setUsername(result.name);
+        setRule(result.role)
+        const role = result.role;
+        localStorage.setItem('role', role);
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  // console.log(username)
+
   return (
     <div>
       <Header />
@@ -18,6 +50,13 @@ function Home() {
                 <button className="inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600  rounded text-lg">Get started</button>
               </Link>
               <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-400 rounded text-lg">Learn more</button>
+              {role == "admin" ?
+                <Link to={"/admin/register"}>
+                  <button className="ml-4 inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600  rounded text-lg">Add new</button>
+                </Link>
+                : ""
+              }
+
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">

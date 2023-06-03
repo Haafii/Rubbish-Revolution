@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Facebook, GitHub, Google } from '@mui/icons-material'
 
 function Register() {
+
+  const role = localStorage.getItem('role');
+
   const navigate = useNavigate();
   const [registerName, setRegisterName] = useState("");
   const [email, setEmail] = useState('')
@@ -10,6 +13,7 @@ function Register() {
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  // const [role, setRole] = useState("user");
   const onSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault()
@@ -31,7 +35,7 @@ function Register() {
         "content-type": "application/json"
       }
     };
-    fetch("https://slashkey2-0.onrender.com/user", requestOptions)
+    fetch("https://mini-project-mkgl.onrender.com/user", requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result)
@@ -41,7 +45,7 @@ function Register() {
         setIsLoading(false);
       })
       .catch(error => {
-        // console.log('error', error)
+        console.log('error', error)
         setError("Sign up failed. Please try again.")
         setIsLoading(false);
       });
@@ -49,13 +53,13 @@ function Register() {
 
 
   return (
-    <div className="bg-gray-600 flex flex-col items-center justify-center min-h-screen md:py-2">
+    <div className="bg-primary flex flex-col items-center justify-center min-h-screen md:py-2">
       <main className="flex items-center w-full px-2 md:px-20">
         <div className="hidden md:inline-flex flex-col flex-1 space-y-1">
           <p className='text-6xl text-blue-500 font-bold'>Rubbish Revolution</p>
-          <p className='font-medium text-lg leading-1 text-primary'>Stop the pollution. Be part of the solution.</p>
+          <p className='font-medium text-lg leading-1 text-white'>Stop the pollution. Be part of the solution.</p>
         </div>
-        <div className="bg-primary text-black rounded-2xl shadow-2xl  flex flex-col w-full  md:w-1/3 items-center max-w-4xl transition duration-1000 ease-in">
+        <div className="bg-secondary text-black rounded-2xl shadow-2xl  flex flex-col w-full  md:w-1/3 items-center max-w-4xl transition duration-1000 ease-in">
           <h2 className='p-3 text-3xl font-bold text-white'>Rubbish Revolution</h2>
           <div className="inline-block border-[1px] justify-center w-20 border-white border-solid"></div>
           <h3 className='text-xl font-semibold text-white pt-2'>Create Account!</h3>
@@ -108,6 +112,17 @@ function Register() {
                 onChange={(e) => { setRegisterConfirmPassword(e.target.value), setError(null) }}
                 required
               />
+
+              {role == "admin" ?
+                <select
+                  className='rounded-2xl px-2 py-1 w-4/5 md:w-full border-[1px] m-1 focus:shadow-md focus:outline-none focus:ring-0'
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                >
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+                : ""}
               {error && <div className='text-red-600 text-sm font-bold'>{error}</div>}
               <button
                 type="submit"

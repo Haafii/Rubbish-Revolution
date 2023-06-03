@@ -25,6 +25,7 @@ function App() {
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/profile" element={<Profile />} />
           <Route path='/leaderbord' element={<Leaderboard />} />
+          <Route path="/admin/register" element={<Register/>} />
         </Routes>
         <Footer />
       </Router>

@@ -26,7 +26,7 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to={"/home"}  className="flex items-center text-base">
+        <Link to={"/home"} className="flex items-center text-base">
           Home
         </Link>
       </Typography>
@@ -63,6 +63,11 @@ export default function Example() {
     </ul>
   );
 
+  const handleLogout = () => {
+    localStorage.removeItem('role');
+    localStorage.removeItem('userId');
+  };
+
   return (
     <Navbar className="rounded-none border-none  bg-primary mx-auto max-w-screen-3xl py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
@@ -76,7 +81,7 @@ export default function Example() {
         </Typography>
         <div className="hidden lg:block">{navList}</div>
         <Link to={"/"}>
-          <Button variant="gradient" size="sm" className="hidden lg:inline-block bg-sky-500 hover:drop-shadow-sm hover:bg-sky-600 rounded-2xl delay-100 hover:translate-y-0.5 hover:scale-110 duration-300">
+          <Button variant="gradient" size="sm" className="hidden lg:inline-block bg-sky-500 hover:drop-shadow-sm hover:bg-sky-600 rounded-2xl delay-100 hover:translate-y-0.5 hover:scale-110 duration-300" onClick={handleLogout}>
             <span>Log Out</span>
           </Button>
         </Link>
@@ -122,7 +127,7 @@ export default function Example() {
         <div className="container mx-auto">
           {navList}
           <Link to={"/"}>
-            <Button variant="gradient" size="sm" fullWidth className="mb-2 bg-sky-500 hover:drop-shadow-sm hover:bg-sky-600 hover:translate-y-0.5 hover:scale-105 duration-300">
+            <Button variant="gradient" size="sm" fullWidth className="mb-2 bg-sky-500 hover:drop-shadow-sm hover:bg-sky-600 hover:translate-y-0.5 hover:scale-105 duration-300" onClick={handleLogout}>
               <span>Log Out</span>
             </Button>
           </Link>
