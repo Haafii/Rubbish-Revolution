@@ -64,7 +64,6 @@ const QRScanner = () => {
           style={{ width: '100%' }}
         />
       )}
-      <p>{qrData}</p>
       {console.log(qrData)}
     </div>
   );
@@ -72,7 +71,11 @@ const QRScanner = () => {
 
 export default QRScanner;
 
-
-
-
-
+// const closeCam = async () => {
+//   const stream = await navigator.mediaDevices.getUserMedia({
+//     audio: false,
+//     video: true,
+//   });
+//   // the rest of the cleanup code
+//   window.location.reload()
+// };
