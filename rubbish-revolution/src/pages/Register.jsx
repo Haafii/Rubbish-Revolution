@@ -129,6 +129,7 @@ function Register() {
                 >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
+                  <option value="store">Store</option>
                 </select>
                 : ""}
               {error && <div className='text-red-600 text-sm font-bold'>{error}</div>}
