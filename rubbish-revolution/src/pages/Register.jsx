@@ -42,9 +42,9 @@ function Register() {
     fetch("https://mini-project-mkgl.onrender.com/user", requestOptions)
       .then(response => response.json())
       .then(result => {
-        const error_detail = result.error
+        let error_detail = result.error
         // console.log(result)
-        if (error_detail.includes("alredy exist")) {
+        if (result.error && error_detail.includes("alredy exist")) {
           setError("User Already Exist")
         }
         else {
