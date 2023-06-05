@@ -66,6 +66,8 @@ export default function Example() {
   const handleLogout = () => {
     localStorage.removeItem('role');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userQr');
+    localStorage.removeItem('productQr');
   };
 
   return (

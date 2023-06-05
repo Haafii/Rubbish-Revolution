@@ -35,9 +35,15 @@ const QRScanner = () => {
   const [qrData, setQRData] = useState('');
   const [scanned, setScanned] = useState(false);
   const navigate = useNavigate();
-  let productQr = []
-  let userQr = []
+  // let productQr = []
+  // let userQr = []
   const role = localStorage.getItem('role');
+  let productQr = JSON.parse(localStorage.getItem('productQr')) || [];
+  // let productQr = localStorage.getItem('productQr');
+  // let userQr = localStorage.getItem('userQr');
+  let userQr = JSON.parse(localStorage.getItem('userQr')) || [];
+
+
 
   const handleScan = (data) => {
     if (data) {
@@ -52,38 +58,23 @@ const QRScanner = () => {
   useEffect(() => {
     if (scanned) {
       // Redirect to the profile page
-      if (qrData.includes("rubbishrevolution")) {
+      if (qrData.includes("rubbishrevolutionuser")) {
         userQr.push(qrData)
+        // localStorage.setItem('userQr', userQr);
+        localStorage.setItem('userQr', JSON.stringify(userQr));
         navigate('/scoreincreased');
+      }
+      else if (qrData.includes("rubbishrevolutionstore")) {
+        navigate('/transaction');
       } else {
         productQr.push(qrData)
+        // localStorage.setItem('productQr', productQr);
+        localStorage.setItem('productQr', JSON.stringify(productQr));
         navigate('/scanagain')
       }
     }
   }, [scanned, navigate]);
-  
-  for (const product of productQr) {
-    let update = {
-      pid: product,
-      uid: userQr[0]
-    }
 
-    var requestOptions = {
-      method: 'POST',
-      body: JSON.stringify(update),
-      headers: {
-        "content-type": "application/json"
-      }
-    };
-    fetch("https://mini-project-mkgl.onrender.com/add_product", requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        console.log(result);
-      })
-      .catch(error => {
-        console.log('error', error)
-      });
-  }
   return (
     <div>
       {!scanned && (

@@ -53,6 +53,10 @@ const PointsAnimation = () => {
   const [animate, setAnimate] = useState(false);
   const navigate = useNavigate();
 
+  const role = localStorage.getItem('role');
+  let userQr = JSON.parse(localStorage.getItem('userQr'));
+  let productQr = JSON.parse(localStorage.getItem('productQr'));
+
   useEffect(() => {
     if (animate) {
       setTimeout(() => {
@@ -68,7 +72,7 @@ const PointsAnimation = () => {
     startVelocity: 40,
     elementCount: 70,
     dragFriction: 0.12,
-    duration: 5000, 
+    duration: 5000,
     stagger: 3,
     width: '10px',
     height: '10px',
@@ -80,8 +84,33 @@ const PointsAnimation = () => {
     setAnimate(true);
   }, []);
 
+  const userId = localStorage.getItem('userId');
+
+
+  if (role == "store") {
+    for (const product of productQr) {
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", `bearer ${userId}`);
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify({ pid: product, uid: userQr[0] }),
+        redirect: 'follow'
+      };
+
+      fetch("https://mini-project-mkgl.onrender.com/add_product", requestOptions)
+        .then(response => response.text())
+        .then(result => {
+          console.log(result)
+        })
+        .catch(error => console.log('error', error));
+    }
+  }
+
   return (
     <div className="main-container bg-primary flex flex-col items-center justify-center min-h-screen">
+      {console.log("products:", productQr)}
       <div className="secondary-container h-full items-center justify-center">
         <Confetti active={animate} config={confettiConfig} />
       </div>
