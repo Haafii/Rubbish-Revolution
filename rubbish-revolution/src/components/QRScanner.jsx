@@ -37,6 +37,7 @@ const QRScanner = () => {
   const navigate = useNavigate();
   let productQr = []
   let userQr = []
+  const role = localStorage.getItem('role');
 
   const handleScan = (data) => {
     if (data) {
@@ -44,7 +45,6 @@ const QRScanner = () => {
       setScanned(true);
     }
   };
-
   const handleError = (error) => {
     console.error(error);
   };
@@ -52,7 +52,7 @@ const QRScanner = () => {
   useEffect(() => {
     if (scanned) {
       // Redirect to the profile page
-      if(qrData.includes("rubbishrevolution")){
+      if (qrData.includes("rubbishrevolution")) {
         userQr.push(qrData)
         navigate('/scoreincreased');
       } else {
@@ -61,7 +61,29 @@ const QRScanner = () => {
       }
     }
   }, [scanned, navigate]);
+  
+  for (const product of productQr) {
+    let update = {
+      pid: product,
+      uid: userQr[0]
+    }
 
+    var requestOptions = {
+      method: 'POST',
+      body: JSON.stringify(update),
+      headers: {
+        "content-type": "application/json"
+      }
+    };
+    fetch("https://mini-project-mkgl.onrender.com/add_product", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => {
+        console.log('error', error)
+      });
+  }
   return (
     <div>
       {!scanned && (
@@ -73,8 +95,8 @@ const QRScanner = () => {
         />
       )}
       {/* {console.log(qrData)} */}
-      {console.log("products" , productQr)}
-      {console.log("user qr ",userQr)}
+      {console.log("products", productQr)}
+      {console.log("user qr ", userQr)}
     </div>
   );
 };
