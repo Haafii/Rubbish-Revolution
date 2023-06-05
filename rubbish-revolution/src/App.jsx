@@ -14,6 +14,7 @@ import Scanner from './pages/Scanner';
 import Profile from './pages/Profile';
 import Leaderboard from './pages/Leaderbord';
 import ScoreAnimation from './pages/ScoreAnimation/ScoreAnimation';
+import ScanAgainButton from './components/ScanAgainButton';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='/leaderbord' element={<Leaderboard />} />
           <Route path="/admin/register" element={<Register />} />
           <Route path="/scoreincreased" element={<ScoreAnimation />} />
+          <Route path="/scanagain" element={<ScanAgainButton />} />
         </Routes>
         {/* <Footer /> */}
       </Router>
