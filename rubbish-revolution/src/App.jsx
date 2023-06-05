@@ -16,6 +16,7 @@ import Leaderboard from './pages/Leaderbord';
 import ScoreAnimation from './pages/ScoreAnimation/ScoreAnimation';
 import ScanAgainButton from './components/ScanAgainButton';
 import TransactionPage from './pages/TransactionPage';
+import ReminderPage from './pages/ReminderPage';
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
           <Route path="/admin/register" element={<Register />} />
           <Route path="/scoreincreased" element={<ScoreAnimation />} />
           <Route path="/scanagain" element={<ScanAgainButton />} />
-          <Route path="/transaction" element={<TransactionPage/>} />
+          <Route path="/transaction" element={<TransactionPage />} />
+          <Route path="/remainder" element={<ReminderPage />} />
         </Routes>
         {/* <Footer /> */}
       </Router>

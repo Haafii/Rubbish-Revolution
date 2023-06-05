@@ -31,7 +31,7 @@ function Register() {
       password: password,
       role: newRole
     };
-
+    console.log(newRole);
     var requestOptions = {
       method: 'POST',
       body: JSON.stringify(update),
@@ -43,7 +43,7 @@ function Register() {
       .then(response => response.json())
       .then(result => {
         let error_detail = result.error
-        // console.log(result)
+        console.log(result)
         if (result.error && error_detail.includes("alredy exist")) {
           setError("User Already Exist")
         }

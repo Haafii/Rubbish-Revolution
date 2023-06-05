@@ -58,7 +58,7 @@ const QRScanner = () => {
   useEffect(() => {
     if (scanned) {
       // Redirect to the profile page
-      if (qrData.includes("rubbishrevolutionuser")) {
+      if (qrData.includes("rubbishrevolution")) {
         userQr.push(qrData)
         // localStorage.setItem('userQr', userQr);
         localStorage.setItem('userQr', JSON.stringify(userQr));

@@ -86,27 +86,65 @@ const PointsAnimation = () => {
 
   const userId = localStorage.getItem('userId');
 
+  var myHeaders = new Headers();
+  myHeaders.append("Authorization", `Bearer ${userId}`);
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Accept", "application/json");
 
   if (role == "store") {
     for (const product of productQr) {
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", `bearer ${userId}`);
+
+      var data = JSON.stringify({
+        pid: product,
+        uid: userQr[0]
+      });
 
       var requestOptions = {
         method: 'POST',
         headers: myHeaders,
-        body: JSON.stringify({ pid: product, uid: userQr[0] }),
-        redirect: 'follow'
+        body: data
       };
 
       fetch("https://mini-project-mkgl.onrender.com/add_product", requestOptions)
-        .then(response => response.text())
-        .then(result => {
-          console.log(result)
-        })
+        .then(response => response.json())
+        .then(result => console.log(result))
         .catch(error => console.log('error', error));
     }
   }
+
+
+  // async function makeRequests() {
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Authorization", `Bearer ${userId}`);
+  //   myHeaders.append("Content-Type", "application/json");
+  //   myHeaders.append("Accept", "application/json");
+
+  //   if (role == "store") {
+  //     for (const product of productQr) {
+  //       var data = JSON.stringify({
+  //         pid: product,
+  //         uid: userQr[0]
+  //       });
+
+  //       var requestOptions = {
+  //         method: 'POST',
+  //         headers: myHeaders,
+  //         body: data
+  //       };
+
+  //       try {
+  //         const response = await fetch("https://mini-project-mkgl.onrender.com/add_product", requestOptions);
+  //         const result = await response.json();
+  //         console.log(result);
+  //       } catch (error) {
+  //         console.log('error', error);
+  //       }
+  //     }
+  //   }
+  // }
+
+  // makeRequests();
+
 
   return (
     <div className="main-container bg-primary flex flex-col items-center justify-center min-h-screen">
