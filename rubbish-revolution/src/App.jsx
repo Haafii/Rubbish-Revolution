@@ -33,7 +33,7 @@ function App() {
           <Route path="/scoreincreased" element={<ScoreAnimation />} />
           <Route path="/scanagain" element={<ScanAgainButton />} />
           <Route path="/transaction" element={<TransactionPage />} />
-          <Route path="/remainder" element={<ReminderPage />} />
+          <Route path="/reminder" element={<ReminderPage />} />
         </Routes>
         {/* <Footer /> */}
       </Router>
