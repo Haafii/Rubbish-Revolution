@@ -81,8 +81,8 @@ const PointsAnimation = () => {
   }, []);
 
   return (
-    <div className="bg-primary flex flex-col items-center justify-center min-h-screen">
-      <div className="h-full items-center justify-center">
+    <div className="main-container bg-primary flex flex-col items-center justify-center min-h-screen">
+      <div className="secondary-container h-full items-center justify-center">
         <Confetti active={animate} config={confettiConfig} />
       </div>
     </div>
