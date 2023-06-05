@@ -16,7 +16,7 @@ function Register() {
   const [newRole, setNewRole] = useState("");
   // console.log(newRole)
   const onSubmit = async (e) => {
-    if (newRole == ""){
+    if (newRole == "") {
       setNewRole("user");
     }
     setIsLoading(true);
@@ -42,8 +42,12 @@ function Register() {
     fetch("https://mini-project-mkgl.onrender.com/user", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result)
-        if (result) {
+        const error_detail = result.error
+        // console.log(result)
+        if (error_detail.includes("alredy exist")) {
+          setError("User Already Exist")
+        }
+        else {
           navigate("/");
         }
         setIsLoading(false);
