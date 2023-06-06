@@ -70,6 +70,16 @@ export default function Example() {
         Reminder
         </Link>
       </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <Link to={"/cleaning"} className="flex items-center text-base">
+        Clean
+        </Link>
+      </Typography>
     </ul>
   );
 
