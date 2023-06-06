@@ -60,6 +60,16 @@ export default function Example() {
           Scanner
         </Link>
       </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-normal"
+      >
+        <Link to={"/reminder"} className="flex items-center text-base">
+        Reminder
+        </Link>
+      </Typography>
     </ul>
   );
 
