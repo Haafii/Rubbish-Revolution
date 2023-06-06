@@ -14,7 +14,7 @@ function Register() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [newRole, setNewRole] = useState("");
-  console.log(newRole)
+  // console.log(newRole)
   const onSubmit = async (e) => {
     // if (newRole === "") {
     //   setNewRole("user");
@@ -31,7 +31,7 @@ function Register() {
       password: password,
       role: newRole
     };
-    console.log(newRole);
+    // console.log(newRole);
     var requestOptions = {
       method: 'POST',
       body: JSON.stringify(update),
