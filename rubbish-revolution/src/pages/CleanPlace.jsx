@@ -16,7 +16,7 @@ const Card = ({ title, description, image }) => {
 
 const CleanPlace = () => {
   const [adminWindowOpen, setAdminWindowOpen] = useState(false);
-  const [role, setRole] = useState(localStorage.getItem('role'));
+  const role = localStorage.getItem('role');
   const [cards, setCards] = useState([
     {
       title: 'place 1',
@@ -48,7 +48,6 @@ const CleanPlace = () => {
       description: '40 points',
       image: 'images/profile.jpg',
     },
-    // Rest of the cards...
   ]);
 
   const openAdminWindow = () => {
