@@ -17,6 +17,7 @@ import ScoreAnimation from './pages/ScoreAnimation/ScoreAnimation';
 import ScanAgainButton from './components/ScanAgainButton';
 import TransactionPage from './pages/TransactionPage';
 import ReminderPage from './pages/ReminderPage';
+import DisposePage from './components/DisposePage';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/scanagain" element={<ScanAgainButton />} />
           <Route path="/transaction" element={<TransactionPage />} />
           <Route path="/reminder" element={<ReminderPage />} />
+          <Route path="/garbagecheck" element={<DisposePage />} />
         </Routes>
         {/* <Footer /> */}
       </Router>

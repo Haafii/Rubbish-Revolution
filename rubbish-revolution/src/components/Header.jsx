@@ -67,7 +67,10 @@ export default function Example() {
     localStorage.removeItem('role');
     localStorage.removeItem('userId');
     localStorage.removeItem('userQr');
+    localStorage.removeItem('status');
+    localStorage.removeItem('garbageQr');
     localStorage.removeItem('productQr');
+    
   };
 
   return (

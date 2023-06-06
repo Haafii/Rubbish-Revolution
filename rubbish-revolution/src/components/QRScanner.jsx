@@ -34,14 +34,14 @@ import { useNavigate } from 'react-router-dom';
 const QRScanner = () => {
   const [qrData, setQRData] = useState('');
   const [scanned, setScanned] = useState(false);
+  const [status, setStatus] = useState("");
   const navigate = useNavigate();
   // let productQr = []
   // let userQr = []
   const role = localStorage.getItem('role');
   let productQr = JSON.parse(localStorage.getItem('productQr')) || [];
-  // let productQr = localStorage.getItem('productQr');
-  // let userQr = localStorage.getItem('userQr');
   let userQr = JSON.parse(localStorage.getItem('userQr')) || [];
+  let garbageQr = JSON.parse(localStorage.getItem('garbageQr')) || [];
 
 
 
@@ -58,17 +58,51 @@ const QRScanner = () => {
   useEffect(() => {
     if (scanned) {
       // Redirect to the profile page
-      if (qrData.includes("rubbishrevolution")) {
+      if (qrData.includes("rubbishrevolutionuser")) {
         userQr.push(qrData)
-        // localStorage.setItem('userQr', userQr);
         localStorage.setItem('userQr', JSON.stringify(userQr));
         navigate('/scoreincreased');
       }
       else if (qrData.includes("rubbishrevolutionstore")) {
         navigate('/transaction');
-      } else {
+      } else if (qrData.includes("rubbishgarbage")) {
+        if (garbageQr.length > 0) {
+          garbageQr.shift(); // Remove the first entry from the array
+        }
+        garbageQr.unshift(qrData); // Add the new value at index 0 of the array
+        localStorage.setItem('garbageQr', JSON.stringify(garbageQr));
+        const url = 'https://mini-project-mkgl.onrender.com/garbage_validation';
+        const payload = {
+          gid: garbageQr[0]
+        };
+
+        const options = {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('userId')}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        };
+
+        fetch(url, options)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            setStatus(data.status)
+            localStorage.setItem('status', data.status);
+            navigate("/garbagecheck")
+            // Process the response data here
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            // Handle any errors that occurred during the request
+          });
+      }
+
+      else {
         productQr.push(qrData)
-        // localStorage.setItem('productQr', productQr);
         localStorage.setItem('productQr', JSON.stringify(productQr));
         navigate('/scanagain')
       }
@@ -88,6 +122,9 @@ const QRScanner = () => {
       {/* {console.log(qrData)} */}
       {console.log("products", productQr)}
       {console.log("user qr ", userQr)}
+      {console.log("garbage Qr ", garbageQr)}
+      {console.log(status)}
+
     </div>
   );
 };

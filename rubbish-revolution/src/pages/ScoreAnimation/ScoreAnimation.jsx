@@ -54,6 +54,38 @@ const PointsAnimation = () => {
     }
   }, [animate, role, pushed, navigate, productQr, userQr]);
 
+
+
+
+  // if (role === "user") {
+  //   const url = 'https://mini-project-mkgl.onrender.com/dispose_product';
+
+  //   const payload = {
+  //     pid : productQr,
+  //   };
+
+  //   const options = {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       Authorization: `Bearer ${localStorage.getItem('userId')}`,
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(payload)
+  //   };
+
+  //   fetch(url, options)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       // Process the response data here
+  //     })
+  //     .catch(error => {
+  //       console.error('Error:', error);
+  //       // Handle any errors that occurred during the request
+  //     });
+  // }
+
   const confettiConfig = {
     angle: 90,
     spread: 360,
