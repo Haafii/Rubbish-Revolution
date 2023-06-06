@@ -14,11 +14,11 @@ function Register() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [newRole, setNewRole] = useState("");
-  // console.log(newRole)
+  console.log(newRole)
   const onSubmit = async (e) => {
-    if (newRole === "") {
-      setNewRole("user");
-    }
+    // if (newRole === "") {
+    //   setNewRole("user");
+    // }
     setIsLoading(true);
     e.preventDefault()
     if (password !== registerConfirmPassword) {
@@ -29,7 +29,7 @@ function Register() {
       Name: registerName,
       email: email,
       password: password,
-      role: "user"
+      role: newRole
     };
     console.log(newRole);
     var requestOptions = {
@@ -57,6 +57,9 @@ function Register() {
         setError("Sign up failed. Please try again.")
         setIsLoading(false);
       });
+    if (role !== "admin") {
+      setNewRole("user");
+    }
   }
 
 
@@ -120,8 +123,7 @@ function Register() {
                 onChange={(e) => { setRegisterConfirmPassword(e.target.value), setError(null), setIsLoading(false) }}
                 required
               />
-
-              {role == "admin" ?
+              {role === "admin" ? (
                 <select
                   className='rounded-2xl px-2 py-1 w-4/5 md:w-full border-[1px] m-1 focus:shadow-md focus:outline-none focus:ring-0'
                   value={newRole}
@@ -131,7 +133,7 @@ function Register() {
                   <option value="admin">Admin</option>
                   <option value="store">Store</option>
                 </select>
-                : ""}
+              ) : ""}
               {error && <div className='text-red-600 text-sm font-bold'>{error}</div>}
               <button
                 type="submit"
