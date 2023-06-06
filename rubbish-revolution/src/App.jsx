@@ -18,6 +18,7 @@ import ScanAgainButton from './components/ScanAgainButton';
 import TransactionPage from './pages/TransactionPage';
 import ReminderPage from './pages/ReminderPage';
 import DisposePage from './components/DisposePage';
+import CleanPlace from './pages/CleanPlace';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/transaction" element={<TransactionPage />} />
           <Route path="/reminder" element={<ReminderPage />} />
           <Route path="/garbagecheck" element={<DisposePage />} />
+          <Route path="/cleaning" element={<CleanPlace />} />
         </Routes>
         {/* <Footer /> */}
       </Router>

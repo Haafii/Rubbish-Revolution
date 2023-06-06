@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const ReminderPage = () => {
   const remindersArray = ['uranga', 'thinna', 'wew', ' ijj', 'udhue'];
-
   const [reminders, setReminders] = useState(remindersArray);
+  const navigate = useNavigate();
 
   const deleteReminder = (index) => {
+    navigate('/scanner')
     const updatedReminders = [...reminders];
     updatedReminders.splice(index, 1);
     setReminders(updatedReminders);
