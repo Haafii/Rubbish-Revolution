@@ -13,7 +13,7 @@ function Register() {
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [newRole, setNewRole] = useState("");
+  const [newRole, setNewRole] = useState("user");
   // console.log(newRole)
   const onSubmit = async (e) => {
     // if (newRole === "") {
@@ -44,7 +44,7 @@ function Register() {
       .then(result => {
         let error_detail = result.error
         console.log(result)
-        if (result.error && error_detail.includes("alredy exist")) {
+        if (result.error && error_detail.includes("already exist")) {
           setError("User Already Exist")
         }
         else {
@@ -59,6 +59,7 @@ function Register() {
       });
     if (role !== "admin") {
       setNewRole("user");
+      console.log(newRole);
     }
   }
 

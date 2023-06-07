@@ -148,7 +148,8 @@ function AdminControl() {
   const [ranking, setRanking] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isEditWindowOpen, setIsEditWindowOpen] = useState(false); // State to track the visibility of the edit window
-  const [earnedPoints, setEarnedPoints] = useState(''); // State to store the entered points
+  const [earnedPoints, setEarnedPoints] = useState('');
+  const [playerName, setPlayerName] = useState(''); // State to store the entered points
 
   var requestOptions = {
     method: 'GET',
@@ -208,16 +209,37 @@ function AdminControl() {
     };
     fetchData();
   }
+  // let playerName;
 
   function handleEdit(name) {
     console.log(`Editing ${name}`);
     setIsEditWindowOpen(true); // Open the edit window
+    // playerName = name;
+    setPlayerName(name)
+    console.log("handle edit " + playerName);
   }
-
   function handleAddPoints() {
+    
     console.log('Adding points:', earnedPoints);
+    console.log("handle add point " + playerName);
     // Add your logic to handle the added points here
     setIsEditWindowOpen(false); // Close the edit window
+    fetch('https://mini-project-mkgl.onrender.com/adminedit', {
+      method: 'PUT',
+      headers: {
+        'accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('userId')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "name": playerName,
+        "point": earnedPoints
+      })
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+
     setIsLoading(true)
     // Add your logic to delete the player here
     const fetchData = async () => {
@@ -236,6 +258,41 @@ function AdminControl() {
     };
     fetchData();
   }
+  // async function handleAddPoints() {
+  //   console.log('Adding points:', earnedPoints);
+
+  //   setIsEditWindowOpen(false); // Close the edit window
+
+  //   try {
+  //     const response = await fetch('https://mini-project-mkgl.onrender.com/adminedit', {
+  //       method: 'PUT',
+  //       headers: {
+  //         'accept': 'application/json',
+  //         'Authorization': `Bearer ${localStorage.getItem('userId')}`,
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         "name": playerName,
+  //         "point": earnedPoints
+  //       })
+  //     });
+
+  //     const data = await response.json();
+  //     console.log(data);
+
+  //     setIsLoading(true);
+
+  //     const fetchDataResponse = await fetch('https://mini-project-mkgl.onrender.com/user_leaderboadrd', requestOptions);
+  //     const result = await fetchDataResponse.json();
+
+  //     setRanking(result);
+  //     setIsLoading(false);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setIsLoading(false);
+  //   }
+  // }
+
 
   const leaderboardData = ranking.map((obj) => ({
     name: obj.name,
