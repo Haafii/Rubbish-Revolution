@@ -8,6 +8,8 @@ function Home() {
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('');
   const [showControlWindow, setShowControlWindow] = useState(false);
+  const [calculateValueWindow, setCalculateValueWindow] = useState(false);
+  const [earnedPoints, setEarnedPoints] = useState('');
 
   // Retrieve the user ID and role from local storage
   const userId = localStorage.getItem('userId');
@@ -48,22 +50,29 @@ function Home() {
     localStorage.setItem('admincontrolbuttonvalue', buttonValue);
     navigate('/admin/control');
   };
-  
+
   const handleCalculateValue = () => {
     const buttonValue = "calculate";
     localStorage.setItem('admincontrolbuttonvalue', buttonValue);
-    navigate('/admin/control');
+    // navigate('/admin/control');
+    setCalculateValueWindow(true)
   };
-  
+
   const handleReset = () => {
     const buttonValue = "edit";
     localStorage.setItem('admincontrolbuttonvalue', buttonValue);
     navigate('/admin/control');
   };
-  
+
   const handleCloseControlWindow = () => {
     setShowControlWindow(false);
+    setCalculateValueWindow(false)
   };
+
+  const handleEditValueSubmit = () =>{
+    setCalculateValueWindow(false)
+    console.log('Recycled amount is:', earnedPoints);
+  }
   return (
     <div>
       <Header />
@@ -134,6 +143,32 @@ function Home() {
               </button>
               <button className="bg-green-500 text-white rounded-lg py-2 px-4" onClick={handleReset}>
                 Edit Points
+              </button>
+              <button
+                className="bg-purple-500 text-white rounded-lg py-2 px-4"
+                onClick={handleCloseControlWindow}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {calculateValueWindow && (
+        <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-8">
+            <h2 className="text-2xl font-bold mb-4">Admin Control</h2>
+            <div className="flex flex-col gap-4">
+            <input
+              type="number"
+              className="px-4 py-2 border border-gray-300 rounded-md w-full mb-4"
+              placeholder="Enter recycled amount"
+              value={earnedPoints}
+              onChange={(e) => setEarnedPoints(e.target.value)}
+            />
+              <button className="bg-green-500 text-white rounded-lg py-2 px-4" onClick={handleEditValueSubmit}>
+                Submit
               </button>
               <button
                 className="bg-purple-500 text-white rounded-lg py-2 px-4"
