@@ -19,6 +19,7 @@ import TransactionPage from './pages/TransactionPage';
 import ReminderPage from './pages/ReminderPage';
 import DisposePage from './components/DisposePage';
 import CleanPlace from './pages/CleanPlace';
+import AdminControl from './pages/AdminControl';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/reminder" element={<ReminderPage />} />
           <Route path="/garbagecheck" element={<DisposePage />} />
           <Route path="/cleaning" element={<CleanPlace />} />
+          <Route path="/admin/control" element={<AdminControl />} />
         </Routes>
         {/* <Footer /> */}
       </Router>

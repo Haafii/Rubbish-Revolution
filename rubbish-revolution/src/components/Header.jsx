@@ -90,7 +90,7 @@ export default function Example() {
     localStorage.removeItem('status');
     localStorage.removeItem('garbageQr');
     localStorage.removeItem('productQr');
-    
+    localStorage.removeItem('admincontrolbuttonvalue');
   };
 
   return (
