@@ -177,6 +177,20 @@ function AdminControl() {
   function handleDelete(name) {
     setIsLoading(true)
     console.log(`Deleting ${name}`);
+    fetch('https://mini-project-mkgl.onrender.com/userdelete', {
+      method: 'DELETE',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "name": name
+      })
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+
     // Add your logic to delete the player here
     const fetchData = async () => {
       try {
