@@ -27,6 +27,7 @@ function Profile() {
         // console.log(qrResult);
         // console.log(result);
         setUsername(result.name);
+        localStorage.setItem('username', result.name);
         setPoint(result.points);
         setQrData("data:image/png;base64," + qrResult.qrdata)
       } catch (error) {
