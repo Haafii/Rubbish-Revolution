@@ -46,7 +46,7 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to={"#"} className="flex items-center text-base">
+        <Link to={"/chat"} className="flex items-center text-base">
           Chat
         </Link>
       </Typography>

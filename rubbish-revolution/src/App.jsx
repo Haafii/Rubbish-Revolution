@@ -20,7 +20,6 @@ import ReminderPage from './pages/ReminderPage';
 import DisposePage from './components/DisposePage';
 import CleanPlace from './pages/CleanPlace';
 import AdminControl from './pages/AdminControl';
-import ChatsPage from './pages/Chat/ChatPage';
 import AppChat from './pages/Chat/App';
 
 function App() {
