@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from "../components/Header";
 import AdminWindow from "../components/AddNewPlace";
 
@@ -17,39 +17,49 @@ const Card = ({ title, description, image }) => {
 const CleanPlace = () => {
   const [adminWindowOpen, setAdminWindowOpen] = useState(false);
   const role = localStorage.getItem('role');
-  const [cards, setCards] = useState([
-    {
-      title: 'place 1',
-      description: '30 points',
-      image: 'images/profile.jpg',
-    },
-    {
-      title: 'place 2',
-      description: '40 points',
-      image: 'images/profile.jpg',
-    },
-    {
-      title: 'place 1',
-      description: '30 points',
-      image: 'images/profile.jpg',
-    },
-    {
-      title: 'place 2',
-      description: '40 points',
-      image: 'images/profile.jpg',
-    },
-    {
-      title: 'place 1',
-      description: '30 points',
-      image: 'images/profile.jpg',
-    },
-    {
-      title: 'place 2',
-      description: '40 points',
-      image: 'images/profile.jpg',
-    },
-  ]);
+  const [data, setData] = useState([]);
+  const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://mini-project-mkgl.onrender.com/getplot', {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+
+        const jsonData = await response.json();
+        setData(jsonData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const newData = data.map(item => {
+      return {
+        title: item.name,
+        description: `${item.points} points`,
+        image: item.image
+      };
+    });
+
+    setCards(newData);
+  }, [data]);
+
+  console.log(data);
   const openAdminWindow = () => {
     setAdminWindowOpen(true);
   };
@@ -71,6 +81,19 @@ const CleanPlace = () => {
     setAdminWindowOpen(false);
   };
 
+  if (isLoading) {
+    return (
+      <div>
+        <Header />
+        <div className="bg-primary flex flex-col items-center justify-center min-h-screen">
+
+          <div className="mt-8">
+            <div className="inline-flex rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-dark animate-spin"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="h-screen bg-primary">
       <Header />
