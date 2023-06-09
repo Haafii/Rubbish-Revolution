@@ -69,7 +69,24 @@ function Home() {
     setCalculateValueWindow(false)
   };
 
-  const handleEditValueSubmit = () =>{
+  const handleEditValueSubmit = () => {
+
+    fetch('https://mini-project-mkgl.onrender.com/calculate_value', {
+      method: 'PUT',
+      headers: {
+        'accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('userId')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'recycle_value': earnedPoints
+      })
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+
+    // Do fetch here
     setCalculateValueWindow(false)
     console.log('Recycled amount is:', earnedPoints);
   }
@@ -104,7 +121,7 @@ function Home() {
               {role === 'admin' && (
                 <React.Fragment>
                   <button
-                    className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-400 rounded text-lg"
+                    className="ml-4 items-center inline-flex text-white bg-sky-500 border-0 py-2 px-6 focus:outline-none hover:bg-sky-600 rounded text-lg"
                     onClick={handleControlClick}
                   >
                     Control
@@ -160,13 +177,13 @@ function Home() {
           <div className="bg-white rounded-lg p-8">
             <h2 className="text-2xl font-bold mb-4">Admin Control</h2>
             <div className="flex flex-col gap-4">
-            <input
-              type="number"
-              className="px-4 py-2 border border-gray-300 rounded-md w-full mb-4"
-              placeholder="Enter recycled amount"
-              value={earnedPoints}
-              onChange={(e) => setEarnedPoints(e.target.value)}
-            />
+              <input
+                type="number"
+                className="px-4 py-2 border border-gray-300 rounded-md w-full mb-4"
+                placeholder="Enter recycled amount"
+                value={earnedPoints}
+                onChange={(e) => setEarnedPoints(e.target.value)}
+              />
               <button className="bg-green-500 text-white rounded-lg py-2 px-4" onClick={handleEditValueSubmit}>
                 Submit
               </button>

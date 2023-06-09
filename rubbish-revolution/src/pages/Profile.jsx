@@ -5,6 +5,7 @@ function Profile() {
   const [username, setUsername] = useState("");
   const [qrData, setQrData] = useState("");
   const [point, setPoint] = useState();
+  const [money, setMoney] = useState();
   // Retrieve the user ID from local storage
   const userId = localStorage.getItem('userId');
 
@@ -27,6 +28,7 @@ function Profile() {
         // console.log(qrResult);
         // console.log(result);
         setUsername(result.name);
+        setMoney(result.money)
         localStorage.setItem('username', result.name);
         setPoint(result.points);
         setQrData("data:image/png;base64," + qrResult.qrdata)
@@ -120,9 +122,9 @@ function Profile() {
                       </div>
                       <div className="lg:mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide ">
-                          89
+                          {money}
                         </span>
-                        <span className="text-sm ">Value</span>
+                        <span className="text-sm ">Money</span>
                       </div>
                     </div>
                   </div>
