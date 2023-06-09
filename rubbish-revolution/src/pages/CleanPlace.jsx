@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import Header from "../components/Header";
 import AdminWindow from "../components/AddNewPlace";
+import { MdDelete } from "react-icons/md";
 
 const Card = ({ title, description, image }) => {
+  const role = localStorage.getItem('role');
+  const handleDeleteCard = ()=>{
+    console.log("card deleted");
+  }
   return (
-    <div className="bg-secondary rounded-lg shadow-lg text-white mx-2 md:mx-4 my-6 md:my-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 cursor-pointer">
+    <div className="relative bg-secondary rounded-lg shadow-lg text-white mx-2 md:mx-4 my-6 md:my-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 cursor-pointer">
+      {role === "admin" &&
+        <button 
+        className="absolute top-2 right-2 text-red-500"
+        onClick={handleDeleteCard}>
+          <MdDelete size={22} />
+        </button>
+      }
       <img className="rounded-t-lg w-full h-48 object-cover" src={image} alt={title} />
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{title}</h2>
@@ -13,6 +25,7 @@ const Card = ({ title, description, image }) => {
     </div>
   );
 };
+
 
 const CleanPlace = () => {
   const [adminWindowOpen, setAdminWindowOpen] = useState(false);
@@ -86,7 +99,6 @@ const CleanPlace = () => {
       <div>
         <Header />
         <div className="bg-primary flex flex-col items-center justify-center min-h-screen">
-
           <div className="mt-8">
             <div className="inline-flex rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-dark animate-spin"></div>
           </div>
