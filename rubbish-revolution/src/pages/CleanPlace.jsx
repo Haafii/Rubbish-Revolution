@@ -2,18 +2,21 @@ import React, { useState, useEffect } from 'react';
 import Header from "../components/Header";
 import AdminWindow from "../components/AddNewPlace";
 import { MdDelete } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ title, description, image }) => {
+  const navigate = useNavigate();
   const role = localStorage.getItem('role');
-  const handleDeleteCard = ()=>{
+  const handleDeleteCard = () => {
     console.log("card deleted");
   }
   return (
-    <div className="relative bg-secondary rounded-lg shadow-lg text-white mx-2 md:mx-4 my-6 md:my-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 cursor-pointer">
+    <div className="relative bg-secondary rounded-lg shadow-lg text-white mx-2 md:mx-4 my-6 md:my-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 cursor-pointer"
+      onClick={ ()=>{navigate("/chat")}}>
       {role === "admin" &&
-        <button 
-        className="absolute top-2 right-2 text-red-500"
-        onClick={handleDeleteCard}>
+        <button
+          className="absolute top-2 right-2 text-red-500"
+          onClick={handleDeleteCard}>
           <MdDelete size={22} />
         </button>
       }
