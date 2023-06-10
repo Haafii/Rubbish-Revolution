@@ -1,7 +1,50 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 const TransactionPage = () => {
-  const [error,setError ] = useState("Insufficient Balance")
+  const [error, setError] = useState("")
+  const [money, setMoney] = useState('')
+  const [isLoading, setIsLoading] = useState(false);
+  const balance = localStorage.getItem('money');
+  const storeqr = localStorage.getItem('storeqr');
+  console.log(storeqr);
+  console.log(balance);
+  console.log(money);
+  const handlePayment = () => {
+    setIsLoading(true);
+    fetch('https://mini-project-mkgl.onrender.com/redeem', {
+      method: 'PUT',
+      headers: {
+        'accept': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('userId')}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "uid": storeqr,
+        "money": money
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if (data === "Success") {
+          setError("")
+        } else {
+
+          setError(data)
+        }
+        setMoney("")
+        setIsLoading(false);
+        // Handle the response data
+      })
+      .catch(error => {
+        console.error(error);
+        setError("Transaction failed. Please try again.")
+        setIsLoading(false);
+        // Handle any errors
+      });
+
+  }
   return (
     <div className="min-h-screen bg-primary py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -25,19 +68,35 @@ const TransactionPage = () => {
                     Amount
                   </label>
                   <input
+                    onChange={(e) => { setMoney(e.target.value), setError(null) }}
                     id="amount"
                     type="text"
                     placeholder="Enter the amount"
+                    value={money}
                     className="px-4 py-2 border focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md bg-gray-100 text-black mt-2"
                   />
-                {error && <div className='text-red-600 text-lg font-bold'>{error}</div>}
+                  {error && <div className='text-red-600 text-lg font-bold'>{error}</div>}
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex flex-col items-center gap-4">
                   <button
                     className="flex justify-center items-center w-full white px-4 py-3 rounded-md focus:outline-none bg-sky-500  hover:bg-sky-600  transition duration-200 ease-in"
+                    onClick={handlePayment}
+                    disabled={isLoading}
                   >
-                    Pay
+                    {isLoading ? (
+                      <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mx-auto"></div> // Loading spinner
+                    ) : (
+                      'Pay'
+                    )}
+
                   </button>
+                  <Link to={"/home"} className='w-full'>
+                    <button
+                      className="flex justify-center items-center w-full white px-4 py-3 rounded-md focus:outline-none bg-gray-500  hover:bg-gray-600  transition duration-200 ease-in"
+                    >
+                      Go To Home
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

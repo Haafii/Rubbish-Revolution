@@ -161,6 +161,7 @@ const QRScanner = () => {
         localStorage.setItem('userQr', JSON.stringify(userQr));
         navigate('/scoreincreased');
       } else if (qrData.includes('rubbishrevolutionstore')) {
+        localStorage.setItem('storeqr', qrData);
         navigate('/transaction');
       } else if (qrData.includes('rubbishgarbage')) {
         if (garbageQr.length > 0) {
