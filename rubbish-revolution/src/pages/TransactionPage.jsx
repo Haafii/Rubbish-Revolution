@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const TransactionPage = () => {
+  const navigate = useNavigate()
   const [error, setError] = useState("")
   const [money, setMoney] = useState('')
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +31,7 @@ const TransactionPage = () => {
         console.log(data);
         if (data === "Success") {
           setError("")
+          navigate("/paymentdone")
         } else {
 
           setError(data)
