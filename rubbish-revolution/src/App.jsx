@@ -21,6 +21,7 @@ import DisposePage from './components/DisposePage';
 import CleanPlace from './pages/CleanPlace';
 import AdminControl from './pages/AdminControl';
 import AppChat from './pages/Chat/App';
+import PaymentSuccess from './components/PaymentSuccess';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path="/cleaning" element={<CleanPlace />} />
           <Route path="/admin/control" element={<AdminControl />} />
           <Route path="/chat" element={<AppChat />} />
+          <Route path="/paymentdone" element={<PaymentSuccess />} />
         </Routes>
         {/* <Footer /> */}
       </Router>
