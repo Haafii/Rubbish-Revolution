@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const TransactionPage = () => {
+  const [error,setError ] = useState("Insufficient Balance")
   return (
     <div className="min-h-screen bg-primary py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -19,7 +20,7 @@ const TransactionPage = () => {
             </div>
             <div className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-white sm:text-lg sm:leading-7">
-                <div className="flex flex-col">
+                <div className="flex flex-col justify-center items-center">
                   <label htmlFor="amount" className="leading-loose">
                     Amount
                   </label>
@@ -29,6 +30,7 @@ const TransactionPage = () => {
                     placeholder="Enter the amount"
                     className="px-4 py-2 border focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-md bg-gray-100 text-black mt-2"
                   />
+                {error && <div className='text-red-600 text-lg font-bold'>{error}</div>}
                 </div>
                 <div className="flex items-center space-x-4">
                   <button

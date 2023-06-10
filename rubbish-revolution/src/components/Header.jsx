@@ -91,6 +91,7 @@ export default function Example() {
     localStorage.removeItem('garbageQr');
     localStorage.removeItem('productQr');
     localStorage.removeItem('admincontrolbuttonvalue');
+    localStorage.removeItem('money');
   };
 
   return (
