@@ -47,8 +47,10 @@ function Register() {
         if (result.error && error_detail.includes("already exist")) {
           setError("User Already Exist")
         }
-        else {
-          navigate("/");
+        else if(role == "admin"){
+          navigate("/home");
+        }else{
+          navigate("/")
         }
         setIsLoading(false);
       })
