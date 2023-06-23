@@ -92,7 +92,7 @@ export default function Example() {
     localStorage.removeItem('productQr');
     localStorage.removeItem('admincontrolbuttonvalue');
     localStorage.removeItem('money');
-    // localStorage.removeItem('username');
+    localStorage.removeItem('username');
   };
 
   return (
