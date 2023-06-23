@@ -6,6 +6,9 @@ const Leaderboard = () => {
   const [ranking, setRanking] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const username = localStorage.getItem('username');
+  console.log(username);
+
   var requestOptions = {
     method: 'GET',
     redirect: 'follow'
@@ -57,7 +60,7 @@ const Leaderboard = () => {
             {leaderboardData.map((player, index) => (
               <div
                 key={index}
-                className={`flex items-center px-6 py-4 ${index === 0 ? 'bg-secondary ' : 'bg-secondary'
+                className={`flex items-center px-6 py-4 ${player.name === username ? 'bg-green-500 ' : 'bg-secondary'
                   } rounded-md mb-2`}
               >
                 <img
