@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Header from '../components/Header';
 
-const ReminderPage = () => {  
+const ReminderPage = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
@@ -36,40 +36,43 @@ const ReminderPage = () => {
 
     fetchData();
   }, []);
-  
-  const remindersArray = data.map(obj => obj.id);
+
+  const remindersArray = data.map(obj => ({ id: obj.id, date: obj.date }));
   console.log(remindersArray);
   console.log(data);
   return (
     <>
-    <Header/>
-    <div className='bg-primary h-screen overflow-y-hidden'>
-      <div className="container mx-auto p-4 max-w-lg flex flex-col">
-        <h1 className="text-2xl font-bold mb-4 text-white justify-center flex">Reminders</h1>
-        {data[0] === "No products to dispose" ? (
-          <div className="flex justify-center items-center h-screen ">
-            <p className="text-white text-center ">Nothing to dispose</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 gap-2">
-            {remindersArray.map((reminder, index) => (
-              <div
-                key={index}
-                className="bg-secondary shadow-lg text-white rounded-md p-4 flex items-center justify-between max-w-md"
-              >
-                <span>{"plastic waste " + reminder}</span>
-                <button
-                  className="px-2 py-1 bg-green-500 text-white font-bold rounded-md"
-                  onClick={() => deleteReminder(index)}
+      <Header />
+      <div className='bg-primary h-screen overflow-y-hidden'>
+        <div className="container mx-auto p-4 max-w-lg flex flex-col">
+          <h1 className="text-2xl font-bold mb-4 text-white justify-center flex">Reminders</h1>
+          {data[0] === "No products to dispose" ? (
+            <div className="flex justify-center items-center h-screen ">
+              <p className="text-white text-center ">Nothing to dispose</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-2">
+              {remindersArray.map((reminder, index) => (
+                <div
+                  key={index}
+                  className="bg-secondary shadow-lg text-white rounded-md p-4 flex items-center justify-between max-w-md"
                 >
-                  Dispose
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
+                  <div>
+                    <span>{"plastic waste " + reminder.id}</span>
+                    <p className="text-gray-400 mt-2">Date: {reminder.date}</p>
+                  </div>
+                  <button
+                    className="px-2 py-1 bg-green-500 text-white font-bold rounded-md"
+                    onClick={() => deleteReminder(index)}
+                  >
+                    Dispose
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 };
